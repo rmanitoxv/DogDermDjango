@@ -4,6 +4,7 @@ from django.db import models
 from .managers import CustomUserManager
 
 # Create your models here.
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(('email address'), unique=True)
@@ -19,3 +20,4 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+

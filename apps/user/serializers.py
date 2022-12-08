@@ -6,7 +6,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User 
         read_only_fields = (
-            'date_joined'
+            'date_joined',
+            'date_updated'
         ),
         fields = (
             "id",
@@ -17,6 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
             "email_verified_at",
             "url",
-            "date_updated",
             "date_inactive"
+
         )

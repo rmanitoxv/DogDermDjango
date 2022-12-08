@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
 
-    'apps.user.apps.UserConfig'
+    'apps.user.apps.UserConfig',
+    'apps.clinics.apps.ClinicsConfig',
+    'apps.diseases.apps.DiseasesConfig'
 ]
 
 MIDDLEWARE = [
@@ -97,7 +99,7 @@ WSGI_APPLICATION = 'dogderm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dogdermav2',
+        'NAME': 'dogderma',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
