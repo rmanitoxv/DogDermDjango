@@ -14,9 +14,6 @@ class AllUserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.queryset.filter(is_active=1)
 
-    def perform_update(self, serializer):
-        serializer.save()
-
     def perform_destroy(self, instance):
         instance.is_active = 0
         instance.date_inactive = datetime.now()
