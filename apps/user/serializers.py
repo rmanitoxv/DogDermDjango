@@ -32,8 +32,6 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        print(instance.is_staff)
-        print(validated_data['is_staff'])
         instance.is_staff = validated_data.get('is_staff', instance.is_staff)
         if (instance.password != validated_data.get('password', instance.password)):
             instance.set_password(validated_data.get('password', instance.password))
