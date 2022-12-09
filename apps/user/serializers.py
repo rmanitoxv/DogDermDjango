@@ -18,6 +18,12 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
             "email_verified_at",
             "url",
-            "date_inactive"
-
+            "date_inactive",
+            "password"
         )
+        
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user 
