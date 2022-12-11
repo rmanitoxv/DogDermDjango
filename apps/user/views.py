@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 from .serializers import *
 from .models import User
 
-from datetime import datetime
+from datetime import datetime        
 
 class AllUserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
@@ -22,6 +22,16 @@ class AllUserViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self):
         return self.queryset.filter(id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update():
+        return False
+    
+    def perform_destroy():
+        return False
