@@ -29,9 +29,4 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
-
-    def perform_update():
-        return False
     
-    def perform_destroy():
-        return False

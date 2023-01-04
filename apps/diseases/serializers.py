@@ -16,7 +16,9 @@ class DiseasesSerializer(serializers.ModelSerializer):
             "causes",
             "symptoms",
             "treatment",
+            "treatments",
             "prevention",
+            "preventions",
             "url",
             "is_deleted"
         )

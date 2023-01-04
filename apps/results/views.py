@@ -10,7 +10,7 @@ class ResultsViewSet(viewsets.ModelViewSet):
     queryset = Results.objects.all()
     
     def get_queryset(self):
-        return self.queryset.filter(is_deleted=False)
+        return self.queryset.filter(is_deleted=False, user_id = self.request.user.id)
 
     def perform_create(self, serializer):
         serializer.save(user_id = self.request.user.id)
