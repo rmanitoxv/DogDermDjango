@@ -29,10 +29,8 @@ ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://192.168.100.24:5173",
-    "http://127.0.0.1:8000",
-    "http://0.0.0.0:8000"
+    "https://dogderm.vercel.app",
+    "http://127.0.0.1:8000"
 ]
 
 REST_FRAMEWORK = {
@@ -102,12 +100,12 @@ WSGI_APPLICATION = 'dogderm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dogderma',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'USER': 'dogderma',
+        'PASSWORD': 'manito415361',
+        'HOST': 'dogderma.cq0uagmqweuy.ap-southeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
