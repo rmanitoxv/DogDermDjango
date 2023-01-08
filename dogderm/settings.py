@@ -26,18 +26,15 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','^2k#+n$0n=e-c1^2k#+n$0n=e-c1^2k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
+    "https://13.250.100.240:8000"
     "http://localhost:5173",
     "https://dogderm.vercel.app",
     "http://127.0.0.1:8000",
-    "https://13.250.100.240:8000"
 ]
 
 REST_FRAMEWORK = {
