@@ -22,16 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-SECRET_KEY = os.environ.get('SECRET_KEY','^2k#+n$0n=e-c1^2k#+n$0n=e-c1^2k#+n$0n=e-c1idal!1nv5r13xo40q0oqv&$^zj0=1%1h2m-_')
-
+from dotenv import load_dotenv
+SECRET_KEY = os.getenv('SECRET_KEY')
+load_dotenv(BASE_DIR / '.env')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = True
+DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
-    "https://13.250.100.240:8000",
     "http://localhost:5173",
     "https://dogderm.vercel.app",
     "http://127.0.0.1:8000",
