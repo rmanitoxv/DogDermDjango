@@ -36,7 +36,8 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://dogderm.vercel.app",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "https://13.250.100.240:8000"
 ]
 
 REST_FRAMEWORK = {
