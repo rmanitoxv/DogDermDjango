@@ -1,23 +1,21 @@
 from django.shortcuts import render
 
-from rest_framework import viewsets, permissions
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework import viewsets
 
 from .serializers import ClinicsSerializer
 from .models import Clinics
 
-class IsOwnerOrReadOnly(permissions.BasePermission):
+class ReadOnly(BasePermission):
 
-    def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-             
-        return request.user
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
 
 
 class ClinicsViewSet(viewsets.ModelViewSet):
     serializer_class = ClinicsSerializer
     queryset = Clinics.objects.all()
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated|ReadOnly]
 
     def get_queryset(self):
         return self.queryset.filter(is_deleted=False)
