@@ -17,7 +17,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class ClinicsViewSet(viewsets.ModelViewSet):
     serializer_class = ClinicsSerializer
     queryset = Clinics.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
         return self.queryset.filter(is_deleted=False)
