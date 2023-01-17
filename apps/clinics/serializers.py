@@ -16,6 +16,7 @@ class ClinicsSerializer(serializers.ModelSerializer):
             "clinic_mobile",
             "clinic_landline",
             "clinic_email",
+            "clinic_hours",
             "clinic_fb",
             "url",
             "is_deleted"
