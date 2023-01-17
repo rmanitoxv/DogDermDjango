@@ -23,6 +23,7 @@ class Clinics(SoftDeleteModel):
     clinic_landline = models.TextField()
     clinic_email = models.TextField()
     clinic_fb = models.TextField(blank=True, null=True, default=None)
+    clinic_hours = models.TextField(blank=True, null=True, default=None)
     url = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
