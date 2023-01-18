@@ -19,12 +19,11 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "is_staff",
             "is_active",
-            "email_verified_at",
             "url",
             "date_inactive",
             "password",
             "cpassword",
-            "message"
+            "message"      
         )
         
     def create(self, validated_data):
@@ -47,5 +46,32 @@ class UserSerializer(serializers.ModelSerializer):
             instance.password = instance.password
         else:
             instance.set_password(validated_data.get('password', instance.password))
+        instance.save()
+        return instance
+    
+class forgotPasswordSerializer(serializers.ModelSerializer):
+    message = serializers.CharField(required=False)
+    class Meta:
+        model = User 
+        fields = (
+            "id",
+            "email",
+            "email_verification"
+            "message"
+        )
+
+class resetPasswordSerializer(serializers.ModelSerializer):
+    message = serializers.CharField(required=False)
+    class Meta:
+        model = User 
+        fields = (
+            "id",
+            "password",
+            "email_verification"
+            "message"
+        )
+
+    def update(self, instance, validated_data):
+        instance.set_password(validated_data.get('password', instance.password))
         instance.save()
         return instance
