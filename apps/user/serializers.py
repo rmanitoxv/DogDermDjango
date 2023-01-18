@@ -23,7 +23,8 @@ class UserSerializer(serializers.ModelSerializer):
             "date_inactive",
             "password",
             "cpassword",
-            "message"      
+            "message",
+            "email_verification",      
         )
         
     def create(self, validated_data):
@@ -55,7 +56,9 @@ class forgotPasswordSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "email",
-            "email_verification"
+            "email_verification",
+            "password",
+            "is_staff"
         )
 
 class resetPasswordSerializer(serializers.ModelSerializer):
@@ -64,7 +67,8 @@ class resetPasswordSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "password",
-            "email_verification"
+            "email_verification",
+            "is_staff",
         )
 
     def update(self, instance, validated_data):

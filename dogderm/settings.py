@@ -23,11 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
 from dotenv import load_dotenv
-SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = (os.getenv('SECRET_KEY'))
+SECRET_KEY = ('a129371987en92817812hf981739812j9812j3g9812ngm')
 load_dotenv(BASE_DIR / '.env')
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+DEBUG = True
+# DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
 ALLOWED_HOSTS = ['*']
 
@@ -35,6 +36,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://dogderm.vercel.app",
     "http://127.0.0.1:8000",
+    "http://localhost:5173"
 ]
 
 REST_FRAMEWORK = {
@@ -53,7 +55,7 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'dogderma@gmail.com'
-EMAIL_HOST_PASSWORD = 'AJR20192023!@#'
+EMAIL_HOST_PASSWORD = 'jqyltjjyhqhbpjpa'
 
 
 INSTALLED_APPS = [
