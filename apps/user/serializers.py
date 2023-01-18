@@ -50,25 +50,21 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
     
 class forgotPasswordSerializer(serializers.ModelSerializer):
-    message = serializers.CharField(required=False)
     class Meta:
         model = User 
         fields = (
             "id",
             "email",
             "email_verification"
-            "message"
         )
 
 class resetPasswordSerializer(serializers.ModelSerializer):
-    message = serializers.CharField(required=False)
     class Meta:
         model = User 
         fields = (
             "id",
             "password",
             "email_verification"
-            "message"
         )
 
     def update(self, instance, validated_data):
