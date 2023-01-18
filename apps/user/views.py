@@ -37,6 +37,10 @@ class ForgotPasswordViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = (permissions.AllowAny,)
 
+    def get_queryset(self):
+        email = self.request.query_params.get('email')
+        return self.queryset.filter(email = email)
+
     def perform_update(self, serializer):
         now = datetime.now()
         result = hashlib.md5(serializer.email + now)
