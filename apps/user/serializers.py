@@ -34,7 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user 
 
     def update(self, instance, validated_data):
-        if(instance.password != validated_data.get('cpassword')):
+        if (instance.password != validated_data.get('cpassword')):
             if not instance.check_password(validated_data.get('cpassword')):
                 instance.message = "Error"
                 return instance
@@ -43,6 +43,9 @@ class UserSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.is_staff = validated_data.get('is_staff', instance.is_staff)
         instance.url = validated_data.get('url', instance.url)
-        instance.set_password(validated_data.get('password', instance.password))
+        if instance.password == validated_data.get('password', instance.password):
+            instance.password = instance.password
+        else:
+            instance.set_password(validated_data.get('password', instance.password))
         instance.save()
         return instance
