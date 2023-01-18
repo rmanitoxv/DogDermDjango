@@ -6,6 +6,8 @@ from .serializers import *
 from .models import User
 import hashlib
 from datetime import datetime
+from django.core.mail import EmailMessage, get_connection
+from django.conf import settings
 
 class AllUserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
@@ -30,7 +32,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save()
 
-class forgotPasswordViewSet(viewsets.ModelViewSet):
+class ForgotPasswordViewSet(viewsets.ModelViewSet):
     serializer_class = forgotPasswordSerializer
     queryset = User.objects.all()
     permission_classes = (permissions.AllowAny,)
@@ -39,9 +41,21 @@ class forgotPasswordViewSet(viewsets.ModelViewSet):
         now = datetime.now()
         result = hashlib.md5(serializer.email + now)
         serializer.email_verification = result.hexdigest()
+        with get_connection(  
+                host=settings.EMAIL_HOST, 
+            port=settings.EMAIL_PORT,  
+            username=settings.EMAIL_HOST_USER, 
+            password=settings.EMAIL_HOST_PASSWORD, 
+            use_tls=settings.EMAIL_USE_TLS  
+        ) as connection:
+            subject = "Reset DogDerma Password"
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = serializer.email
+            message = ("DogDerma Reset Password Link: https://dogderm.vercel.app/"+result.hexdigest())
+            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
         serializer.save()
         
-class resetPasswordViewSet(viewsets.ModelViewSet):
+class ResetPasswordViewSet(viewsets.ModelViewSet):
     serializer_class = resetPasswordSerializer
     queryset = User.objects.all()
     permission_classes = (permissions.AllowAny)
