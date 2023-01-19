@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 from rest_framework import viewsets
 
+
 from .serializers import DiseasesSerializer
 from .models import Diseases
 

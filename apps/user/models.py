@@ -8,7 +8,7 @@ from .managers import CustomUserManager
 class User(AbstractUser):
     username = None
     email = models.EmailField(('email address'), unique=True)
-    email_verification = models.CharField(max_length=6, blank=True, null=True)
+    email_verification = models.CharField(max_length=255, blank=True, null=True)
     url = models.CharField(max_length=255, blank=True, null=True)
     date_updated = models.DateTimeField(auto_now=True)
     date_inactive = models.DateTimeField(null=True, blank=True)

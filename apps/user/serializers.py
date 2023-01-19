@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from rest_framework import status
 from django.http import HttpResponse, JsonResponse
+from django.core.mail import EmailMessage, get_connection
+from django.conf import settings
+import hashlib
+from datetime import datetime
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -30,10 +34,21 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = super().create(validated_data)
         user.set_password(validated_data['password'])
+        now = str(datetime.now())
+        result = hashlib.md5(now.encode())
+        user.email_verification = result.hexdigest()
         user.save()
         return user 
 
     def update(self, instance, validated_data):
+        now = str(datetime.now())
+        result = hashlib.md5(now.encode())
+        instance.email_verification = result.hexdigest()
+        if (validated_data.get('message') == "Change Password"):
+            instance.set_password(validated_data.get('password', instance.password))
+            instance.save()
+            print("saved")
+            return instance
         if (instance.password != validated_data.get('cpassword')):
             if not instance.check_password(validated_data.get('cpassword')):
                 instance.message = "Error"
@@ -60,6 +75,7 @@ class forgotPasswordSerializer(serializers.ModelSerializer):
             "password",
             "is_staff"
         )
+        
 
 class resetPasswordSerializer(serializers.ModelSerializer):
     class Meta:

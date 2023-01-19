@@ -54,8 +54,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = False
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'dogderma@gmail.com'
-EMAIL_HOST_PASSWORD = 'jqyltjjyhqhbpjpa'
+EMAIL_HOST_USER = 'manito.russel@gmail.com'
+EMAIL_HOST_PASSWORD = 'sbkyezyybygflego'
 
 
 INSTALLED_APPS = [
@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
+    'django_rest_passwordreset',
 
     'apps.user.apps.UserConfig',
     'apps.clinics.apps.ClinicsConfig',
